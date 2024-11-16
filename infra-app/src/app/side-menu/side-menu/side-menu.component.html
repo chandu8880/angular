@@ -1,0 +1,6 @@
+<section class="side-menu-container">
+    <ul class="" *ngFor="let menu of menu">
+        <li class="menu-item" (click)="navigate(menu?.route ?? '')">{{menu?.menuName}}</li>
+    </ul>
+
+</section>

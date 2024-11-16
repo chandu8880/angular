@@ -1,0 +1,36 @@
+<section class="pop-contianer">
+    <section class="pop-header d-flex">
+        Employee Details
+        <img class="cancel-cross mx-2" (click)="cancel(true)"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1uJv0PvDACgpxRNXTFsAG-dzTTopb3a44E6tmunf2c3zbtMHn3-hY4T31EnEPEKOGXuk&usqp=CAU"
+            alt="">
+    </section>
+    <section class="pop-body">
+        <div class="w-100 d-flex flex-wrap" [formGroup]="form">
+            <ng-container *ngFor="let item of data">
+                <!-- Input Field -->
+                <div class="w-50 my-2" *ngIf="item?.type === 'input'">
+                    <div class="form-label">{{ item?.label }}</div>
+                    <input type="text" [formControlName]="item?.key" />
+                </div>
+
+                <!-- Select Field -->
+                <div class="w-50 my-2" *ngIf="item?.type === 'select'">
+                    <div class="form-label">{{ item?.label }}</div>
+                    <select [formControlName]="item?.key">
+                        <option *ngFor="let option of item?.options" [value]="option.value">
+                            {{ option.label }}
+                        </option>
+                    </select>
+                </div>
+            </ng-container>
+        </div>
+    </section>
+    <section class="pop-footer d-flex ">
+        <div class="ml-auto">
+            <button class="btn btn-add" [disabled]="form.invalid" (click)="emitFormDtls()">
+                {{ typeOfEdit ? 'Update' : 'Save' }}
+            </button>
+        </div>
+    </section>
+</section>

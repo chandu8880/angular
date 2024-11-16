@@ -1,0 +1,30 @@
+<section class="flex-container home-page-container">
+    <section class="d-flex flex-column">
+        <button class="btn btn-add ml-auto" (click)="addEmployee()">Add Employee</button>
+
+        <section class="d-flex flex-wrap mx-2">
+            <ng-container *ngFor="let item of getEmpolyee(employeeDtls)">
+                <!-- employee card loop -->
+                <section class="card ms-2">
+                    <img class="text-center" width="50"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/001/840/612/small/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg"
+                        alt="">
+                    <div *ngFor="let employeeKey of  getEmpolyee(employeeDtls[item])" class="d-flex my-2">
+                        <div class="form-label">{{employeeDtls[item][employeeKey]['label']}}</div>
+                        <div class="ml-auto">{{employeeDtls[item][employeeKey]['keyValue'] }}</div>
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn-delete" (click)="deleteEmployee(item)">Delete</button>
+                        <button class="btn btn-add ml-auto" (click)="viewEmployee(item)">View</button>
+                    </div>
+                </section>
+            </ng-container>
+        </section>
+    </section>
+
+
+
+
+    <app-popup-render [data]="formData" *ngIf="enablePopup" (cancelEmit)="cancel()"
+        (formEmit)="formDtls($event)" [typeOfEdit]="typeOfEdit"></app-popup-render>
+</section>
